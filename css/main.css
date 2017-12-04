@@ -1,0 +1,22 @@
+body {
+  background-color: black;
+  text-align: center;
+}
+
+button {
+  width: 100px;
+  height: 50px;
+}
+
+#red {background-color: red;}
+#blue {background-color: blue;}
+#yellow {background-color: yellow;}
+#green {background-color: green;}
+#red, #blue, #yellow, #green {
+  border-style: none;
+  opacity: 0.8;
+}
+
+#red:active, #blue:active, #yellow:active, #green:active {
+  opacity: 0.3;
+}
