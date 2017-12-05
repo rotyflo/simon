@@ -14,9 +14,9 @@ button {
 #green {background-color: green;}
 #red, #blue, #yellow, #green {
   border-style: none;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 #red:active, #blue:active, #yellow:active, #green:active {
-  opacity: 0.3;
+  opacity: 1 !important;
 }
