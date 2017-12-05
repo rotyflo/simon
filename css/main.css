@@ -1,5 +1,6 @@
 body {
   background-color: black;
+  color: white;
   text-align: center;
 }
 
@@ -15,6 +16,7 @@ button {
 #red, #blue, #yellow, #green {
   border-style: none;
   opacity: 0.6;
+  margin: 4px 2px 4px 2px;
 }
 
 #red:active, #blue:active, #yellow:active, #green:active {
