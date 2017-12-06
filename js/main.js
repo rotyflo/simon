@@ -5,8 +5,11 @@ const COLORS = Object.keys(BUTTONS);
 const ON_OPACITY = "1";
 const OFF_OPACITY = "0.6";
 const BEEP_INTERVAL = 750;
-const NOTIFICATION_TIME = 2000;
+const NOTIFICATION_TIME = 1000;
 const TURN_INDICATOR = document.getElementById("turn");
+const STRICT_BUTTON = document.getElementById("strict-mode");
+const RESTART_BUTTON = document.getElementById("restart");
+const BEST = document.getElementById("best-amount");
 let gamePattern = [];
 let playerPattern = [];
 let strictMode = false;
@@ -26,7 +29,7 @@ for (const color in BUTTONS) {
     // INCORRECT ANSWER
     if (pp !== gp.slice(0, pp.length - 1) + "]") {
       let turn = TURN_INDICATOR.innerText;
-      TURN_INDICATOR.innerText = "!!";
+      TURN_INDICATOR.innerText = "WRONG";
 
       setTimeout(function () {
         if (strictMode) {
@@ -46,6 +49,10 @@ for (const color in BUTTONS) {
       TURN_INDICATOR.innerText = Number(TURN_INDICATOR.innerText) + 1;
       playerPattern = [];
 
+      if (TURN_INDICATOR.innerText > BEST.innerText) {
+        BEST.innerText = TURN_INDICATOR.innerText; 
+      }
+
       if (TURN_INDICATOR.innerText == 20) {
         TURN_INDICATOR.innerText = "YOU WIN!";
 
@@ -61,19 +68,12 @@ for (const color in BUTTONS) {
   });
 }
 
-// STRICT MODE BUTTON
-document.getElementById("strict-mode").addEventListener("click", function () {
-  if (strictMode) {
-    strictMode = false;
-    document.getElementById("strict-mode").innerText = "STRICT MODE DISABLED";
-  } else {
-    strictMode = true;
-    document.getElementById("strict-mode").innerText = "STRICT MODE ENABLED";
-  }
+STRICT_BUTTON.addEventListener("click", function () {
+  STRICT_BUTTON.innerText = strictMode ? "DISABLED" : "ENABLED";  
+  strictMode = strictMode ? false : true;
 });
 
-// RESTART BUTTON
-document.getElementById("restart").addEventListener("click", function () {
+RESTART_BUTTON.addEventListener("click", function () {
   restartGame();
 });
 
@@ -81,23 +81,27 @@ document.getElementById("restart").addEventListener("click", function () {
 addRandomColorToPattern();
 indicatePattern();
 
+//------------------------FUNCTIONALITY----------------------------//
+
 function restartGame() {
   gamePattern = [];
   playerPattern = [];
-  TURN_INDICATOR.innerText = 1;
+  TURN_INDICATOR.innerText = "RESETTING...";
 
-  addRandomColorToPattern();
-  indicatePattern();
+  setTimeout(function () {
+    TURN_INDICATOR.innerText = 0;
+
+    addRandomColorToPattern();
+    indicatePattern();
+  }, NOTIFICATION_TIME);
 }
 
-// GENERATE RANDOM PATTERN OF COLORS
 function addRandomColorToPattern() {
   let randomNum = Math.floor(Math.random() * COLORS.length);
 
   gamePattern.push(COLORS[randomNum]);
 }
 
-// VISUALIZE PATTERN VIA BUTTON FLASHES AND BEEPS
 function indicatePattern() {
   let interval = BEEP_INTERVAL;
 
