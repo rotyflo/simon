@@ -7,9 +7,8 @@ const OFF_OPACITY = "0.6";
 const BEEP_INTERVAL = 750;
 const NOTIFICATION_TIME = 1000;
 const TURN_INDICATOR = document.getElementById("turn");
-const STRICT_BUTTON = document.getElementById("strict-mode");
-const RESTART_BUTTON = document.getElementById("restart");
-const BEST = document.getElementById("best-amount");
+const MODE = document.getElementById("mode");
+const START = document.getElementById("start");
 let gamePattern = [];
 let playerPattern = [];
 let strictMode = false;
@@ -29,7 +28,7 @@ for (const color in BUTTONS) {
     // INCORRECT ANSWER
     if (pp !== gp.slice(0, pp.length - 1) + "]") {
       let turn = TURN_INDICATOR.innerText;
-      TURN_INDICATOR.innerText = "WRONG";
+      TURN_INDICATOR.innerText = "Wrong";
 
       setTimeout(function () {
         if (strictMode) {
@@ -49,12 +48,8 @@ for (const color in BUTTONS) {
       TURN_INDICATOR.innerText = Number(TURN_INDICATOR.innerText) + 1;
       playerPattern = [];
 
-      if (TURN_INDICATOR.innerText > BEST.innerText) {
-        BEST.innerText = TURN_INDICATOR.innerText; 
-      }
-
       if (TURN_INDICATOR.innerText == 20) {
-        TURN_INDICATOR.innerText = "YOU WIN!";
+        TURN_INDICATOR.innerText = "Winner!";
 
         setTimeout(function () {
           restartGame();
@@ -68,25 +63,21 @@ for (const color in BUTTONS) {
   });
 }
 
-STRICT_BUTTON.addEventListener("click", function () {
-  STRICT_BUTTON.innerText = strictMode ? "DISABLED" : "ENABLED";  
+MODE.addEventListener("click", function () {
+  MODE.innerText = strictMode ? "Easy Mode" : "Strict Mode";
   strictMode = strictMode ? false : true;
 });
 
-RESTART_BUTTON.addEventListener("click", function () {
+START.addEventListener("click", function () {
   restartGame();
 });
-
-// START GAME
-addRandomColorToPattern();
-indicatePattern();
 
 //------------------------FUNCTIONALITY----------------------------//
 
 function restartGame() {
   gamePattern = [];
   playerPattern = [];
-  TURN_INDICATOR.innerText = "RESETTING...";
+  TURN_INDICATOR.innerText = "Loading...";
 
   setTimeout(function () {
     TURN_INDICATOR.innerText = 0;

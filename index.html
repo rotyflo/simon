@@ -13,24 +13,22 @@
 <body>
   <h1>SIMON MEMORY GAME</h1>
 
-  <h3 id="turn">0</h3>
-
   <div id="button-grid">
+    <p id="turn">0</p>
+    
+    <div id="game-buttons">
     <button id="red"></button>
     <button id="blue"></button>
     <br>
     <button id="yellow"></button>
     <button id="green"></button>
+    </div>
+
+    <div id="settings">
+      <button id="start">Start</button>
+      <button id="mode">Easy Mode</button>
+    </div>
   </div>
-
-  <p>
-    <span id="best">BEST: <span id="best-amount">0</span></span>
-    <span id="wins">WINS: <span id="wins-amount">0</span></span>
-  </p>
-
-  <br>
-  <p>STRICT MODE <button id="strict-mode">DISABLED</button></p>
-  <button id="restart">RESTART</button>
 
   <script src="js/main.js"></script>
 </body>
