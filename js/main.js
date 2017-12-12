@@ -29,7 +29,7 @@ for (const color in BUTTONS) {
     // INCORRECT ANSWER
     if (pp !== gp.slice(0, pp.length - 1) + "]") {
       let turn = TURN_INDICATOR.innerText;
-      TURN_INDICATOR.innerText = "Wrong";
+      TURN_INDICATOR.innerText = gamePattern == false ? "Press Start" : "Wrong";
 
       setTimeout(function () {
         if (strictMode) {
@@ -97,6 +97,8 @@ function addRandomColorToPattern() {
 function indicatePattern() {
   let interval = BEEP_INTERVAL;
 
+  disableButtons();
+
   gamePattern.forEach(function (color) {
     let element = BUTTONS[color].element;
 
@@ -110,5 +112,21 @@ function indicatePattern() {
     }, interval);
 
     interval += BEEP_INTERVAL;
+  });
+
+  setTimeout(function() {
+    enableButtons();
+  }, interval);
+}
+
+function disableButtons() {
+  COLORS.forEach(function(color) {
+    document.getElementById(color).disabled = true;
+  });
+}
+
+function enableButtons() {
+  COLORS.forEach(function(color) {
+    document.getElementById(color).disabled = false;
   });
 }
