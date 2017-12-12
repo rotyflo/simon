@@ -105,6 +105,7 @@ function indicatePattern() {
 
     setTimeout(function () {
       element.style.opacity = ON_OPACITY;
+      BUTTONS[color].audio.currentTime = 0;
       BUTTONS[color].audio.play();
 
       BUTTONS[color].audio.addEventListener("ended", function () {
