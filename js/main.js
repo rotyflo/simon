@@ -70,6 +70,7 @@ MODE.addEventListener("click", function () {
 });
 
 START.addEventListener("click", function () {
+  document.getElementById("autoplay-fix").style.display = "none";
   restartGame();
 });
 
