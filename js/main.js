@@ -20,6 +20,7 @@ for (const color in BUTTONS) {
 
   BUTTONS[color].element.addEventListener("click", function () {
     playerPattern.push(color);
+    BUTTONS[color].audio.currentTime = 0;
     BUTTONS[color].audio.play();
 
     let pp = JSON.stringify(playerPattern);
