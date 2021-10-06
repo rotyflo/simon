@@ -7,30 +7,50 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Simon Game</title>
 
+  <link rel="stylesheet" href="https://unpkg.com/pyloncss@latest/css/pylon.css" />
   <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-  <h1>SIMON MEMORY GAME</h1>
+  <header>
+    <h1>Simon Memory Game</h1>
+  </header>
 
+  <h3>Score: <span id="turn">0</span></h3>
+
+
+  <div id="game-buttons">
+    <vstack spacing=s align-x=center>
+      <hstack spacing=s align-x=center>
+        <a id="red">
+          <div class="panel"></div>
+        </a>
+        <a id="blue">
+          <div class="panel"></div>
+        </a>
+      </hstack>
+      <hstack spacing=s align-x=center>
+        <a id="yellow">
+          <div class="panel"></div>
+        </a>
+        <a id="green">
+          <div class="panel"></div>
+        </a>
+      </hstack>
+    </vstack>
+  </div>
+
+
+  <br>
+  <div id="settings">
+    <button id="start" class="btn btn-default">Start</button>
+    <button id="mode" class="btn btn-default">Easy Mode</button>
+  </div>
+  </div>
+
+  <br>
   <p id="autoplay-fix">If on mobile, tap all 4 buttons before starting</p>
 
-  <div id="button-grid">
-    <p id="turn">Press Start</p>
-    
-    <div id="game-buttons">
-    <button id="red"></button>
-    <button id="blue"></button>
-    <br>
-    <button id="yellow"></button>
-    <button id="green"></button>
-    </div>
-
-    <div id="settings">
-      <button id="start">Start</button>
-      <button id="mode">Easy Mode</button>
-    </div>
-  </div>
 
   <script src="js/main.js"></script>
 </body>

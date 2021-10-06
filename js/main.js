@@ -79,7 +79,7 @@ START.addEventListener("click", function () {
 function restartGame() {
   gamePattern = [];
   playerPattern = [];
-  TURN_INDICATOR.innerText = "Loading...";
+  TURN_INDICATOR.innerText = "0";
 
   setTimeout(function () {
     TURN_INDICATOR.innerText = 0;
