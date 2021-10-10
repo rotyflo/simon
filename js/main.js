@@ -28,7 +28,6 @@ let playerPattern = [];
 let strictMode = false;
 
 
-
 function playSound({ array, sampleRate }) {
   // We have to start with creating AudioContext
   const audioContext = new AudioContext({ sampleRate });
@@ -72,6 +71,7 @@ function activateButton(color) {
 
   // INCORRECT ANSWER
   if (pp !== gp.slice(0, pp.length - 1) + "]") {
+    disableButtons();
     let turn = TURN_INDICATOR.innerText;
     TURN_INDICATOR.innerText = gamePattern == false ? "Press Start" : "Wrong";
 
@@ -90,6 +90,7 @@ function activateButton(color) {
 
   // CORRECT ANSWER
   if (pp == gp) {
+    disableButtons();
     TURN_INDICATOR.innerText = Number(TURN_INDICATOR.innerText) + 1;
     playerPattern = [];
 
@@ -139,8 +140,6 @@ function addRandomColorToPattern() {
 function indicatePattern() {
   let interval = BEEP_INTERVAL;
 
-  disableButtons();
-
   gamePattern.forEach(function (color) {
     let element = BUTTONS[color].element;
 
@@ -162,12 +161,12 @@ function indicatePattern() {
 
 function disableButtons() {
   Object.keys(BUTTONS).forEach(function (color) {
-    BUTTONS[color].element.disabled = true;
+    BUTTONS[color].element.style.pointerEvents = "none";
   });
 }
 
 function enableButtons() {
   Object.keys(BUTTONS).forEach(function (color) {
-    BUTTONS[color].element.disabled = false;
+    BUTTONS[color].element.style.pointerEvents = "initial";
   });
 }
