@@ -1,5 +1,12 @@
 @import url("https://rotyflo.github.io/css/terminal.css");
 
+:root {
+  --red: #E74C3C;
+  --blue: #3498DB;
+  --green: #1ABC9C;
+  --yellow: #F1C40F;
+}
+
 body {
   text-align: center;
 }
@@ -15,19 +22,19 @@ h1 {
 }
 
 #red {
-  background-color: #E74C3C;
+  background-color: var(--red);
 }
 
 #blue {
-  background-color: #3498DB;
+  background-color: var(--blue);
 }
 
 #green {
-  background-color: #1ABC9C;
+  background-color: var(--green);
 }
 
 #yellow {
-  background-color: #F1C40F;
+  background-color: var(--yellow);
 }
 
 #red:active, #blue:active, #yellow:active, #green:active {

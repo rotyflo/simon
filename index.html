@@ -22,18 +22,18 @@
   <div id="game-buttons">
     <vstack spacing=s align-x=center>
       <hstack spacing=s align-x=center>
-        <a id="red">
+        <a id="red" onclick="playSound(SOUNDS.red)">
           <div class="panel"></div>
         </a>
-        <a id="blue">
+        <a id="blue" onclick="playSound(SOUNDS.blue)">
           <div class="panel"></div>
         </a>
       </hstack>
       <hstack spacing=s align-x=center>
-        <a id="yellow">
+        <a id="green" onclick="playSound(SOUNDS.green)">
           <div class="panel"></div>
         </a>
-        <a id="green">
+        <a id="yellow" onclick="playSound(SOUNDS.yellow)">
           <div class="panel"></div>
         </a>
       </hstack>
@@ -49,10 +49,10 @@
   </div>
 
   <br>
-  <p id="autoplay-fix">If on mobile, tap all 4 buttons before starting</p>
 
-
-  <script src="js/main.js"></script>
+  <footer>
+    <script src="js/main.js"></script>
+  </footer>
 </body>
 
 </html>
