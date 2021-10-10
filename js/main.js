@@ -1,20 +1,28 @@
 "use strict";
 
-const BUTTONS = { red, blue, yellow, green };
-const COLORS = Object.keys(BUTTONS);
+const BUTTONS = {
+  red: {
+    element: document.getElementById("red"),
+    sound: makeSineWave(400)
+  },
+  blue: {
+    element: document.getElementById("blue"),
+    sound: makeSineWave(420)
+  },
+  green: {
+    element: document.getElementById("green"),
+    sound: makeSineWave(440)
+  },
+  yellow: {
+    element: document.getElementById("yellow"),
+    sound: makeSineWave(480)
+  }
+}
 const ON_OPACITY = "1";
 const OFF_OPACITY = "0.6";
 const BEEP_INTERVAL = 1000;
 const NOTIFICATION_TIME = 1000;
 const TURN_INDICATOR = document.getElementById("turn");
-const MODE = document.getElementById("mode");
-const START = document.getElementById("start");
-const SOUNDS = {
-  red: makeSineWave(400),
-  blue: makeSineWave(420),
-  green: makeSineWave(440),
-  yellow: makeSineWave(480)
-}
 let gamePattern = [];
 let playerPattern = [];
 let strictMode = false;
@@ -55,67 +63,57 @@ function showElement(element) {
   element.style.display = "initial";
 }
 
+function activateButton(color) {
+  playSound(BUTTONS[color].sound);
+  playerPattern.push(color);
 
+  let pp = JSON.stringify(playerPattern);
+  let gp = JSON.stringify(gamePattern);
 
-// BUTTON FUNCTIONALITY
-for (const color in BUTTONS) {
-  BUTTONS[color].element = document.getElementById(color);
+  // INCORRECT ANSWER
+  if (pp !== gp.slice(0, pp.length - 1) + "]") {
+    let turn = TURN_INDICATOR.innerText;
+    TURN_INDICATOR.innerText = gamePattern == false ? "Press Start" : "Wrong";
 
-  BUTTONS[color].element.addEventListener("click", function () {
-    playerPattern.push(color);
-
-    let pp = JSON.stringify(playerPattern);
-    let gp = JSON.stringify(gamePattern);
-
-    // INCORRECT ANSWER
-    if (pp !== gp.slice(0, pp.length - 1) + "]") {
-      let turn = TURN_INDICATOR.innerText;
-      TURN_INDICATOR.innerText = gamePattern == false ? "Press Start" : "Wrong";
-
-      setTimeout(function () {
-        if (strictMode) {
-          restartGame();
-        }
-        else {
-          TURN_INDICATOR.innerText = turn;
-          playerPattern = [];
-
-          indicatePattern();
-        }
-      }, NOTIFICATION_TIME);
-    }
-
-    // CORRECT ANSWER
-    if (pp == gp) {
-      TURN_INDICATOR.innerText = Number(TURN_INDICATOR.innerText) + 1;
-      playerPattern = [];
-
-      if (TURN_INDICATOR.innerText == 20) {
-        TURN_INDICATOR.innerText = "Winner!";
-
-        setTimeout(function () {
-          restartGame();
-        }, NOTIFICATION_TIME);
+    setTimeout(function () {
+      if (strictMode) {
+        restartGame();
       }
       else {
-        addRandomColorToPattern();
+        TURN_INDICATOR.innerText = turn;
+        playerPattern = [];
 
-        setTimeout(function() {
-          indicatePattern();
-        }, BEEP_INTERVAL);
+        indicatePattern();
       }
+    }, NOTIFICATION_TIME);
+  }
+
+  // CORRECT ANSWER
+  if (pp == gp) {
+    TURN_INDICATOR.innerText = Number(TURN_INDICATOR.innerText) + 1;
+    playerPattern = [];
+
+    if (TURN_INDICATOR.innerText == 20) {
+      TURN_INDICATOR.innerText = "Winner!";
+
+      setTimeout(function () {
+        restartGame();
+      }, NOTIFICATION_TIME);
     }
-  });
+    else {
+      addRandomColorToPattern();
+
+      setTimeout(function() {
+        indicatePattern();
+      }, BEEP_INTERVAL);
+    }
+  }
 }
 
-MODE.addEventListener("click", function () {
-  MODE.innerText = strictMode ? "Easy Mode" : "Strict Mode";
+function toggleMode() {
+  document.getElementById("mode").innerText = strictMode ? "Easy Mode" : "Strict Mode";
   strictMode = strictMode ? false : true;
-});
-
-START.addEventListener("click", function () {
-  restartGame();
-});
+}
 
 //------------------------FUNCTIONALITY----------------------------//
 
@@ -133,9 +131,9 @@ function restartGame() {
 }
 
 function addRandomColorToPattern() {
-  let randomNum = Math.floor(Math.random() * COLORS.length);
+  let randomNum = Math.floor(Math.random() * Object.keys(BUTTONS).length);
 
-  gamePattern.push(COLORS[randomNum]);
+  gamePattern.push(Object.keys(BUTTONS)[randomNum]);
 }
 
 function indicatePattern() {
@@ -148,7 +146,7 @@ function indicatePattern() {
 
     setTimeout(function () {
       element.style.background = "white";
-      playSound(SOUNDS[color]);
+      playSound(BUTTONS[color].sound);
       setTimeout(function () {
         element.style.background = `var(--${color})`;
       }, BEEP_INTERVAL);
@@ -163,13 +161,13 @@ function indicatePattern() {
 }
 
 function disableButtons() {
-  COLORS.forEach(function (color) {
-    document.getElementById(color).disabled = true;
+  Object.keys(BUTTONS).forEach(function (color) {
+    BUTTONS[color].element.disabled = true;
   });
 }
 
 function enableButtons() {
-  COLORS.forEach(function (color) {
-    document.getElementById(color).disabled = false;
+  Object.keys(BUTTONS).forEach(function (color) {
+    BUTTONS[color].element.disabled = false;
   });
 }

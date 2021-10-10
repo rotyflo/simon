@@ -22,18 +22,18 @@
   <div id="game-buttons">
     <vstack spacing=s align-x=center>
       <hstack spacing=s align-x=center>
-        <a id="red" onclick="playSound(SOUNDS.red)">
+        <a id="red" onclick="activateButton('red')">
           <div class="panel"></div>
         </a>
-        <a id="blue" onclick="playSound(SOUNDS.blue)">
+        <a id="blue" onclick="activateButton('blue')">
           <div class="panel"></div>
         </a>
       </hstack>
       <hstack spacing=s align-x=center>
-        <a id="green" onclick="playSound(SOUNDS.green)">
+        <a id="green" onclick="activateButton('green')">
           <div class="panel"></div>
         </a>
-        <a id="yellow" onclick="playSound(SOUNDS.yellow)">
+        <a id="yellow" onclick="activateButton('yellow')">
           <div class="panel"></div>
         </a>
       </hstack>
@@ -43,8 +43,8 @@
 
   <br>
   <div id="settings">
-    <button id="start" class="btn btn-default">Start</button>
-    <button id="mode" class="btn btn-default">Easy Mode</button>
+    <button id="start" class="btn btn-default" onclick="restartGame()">Start</button>
+    <button id="mode" class="btn btn-default" onclick="toggleMode()">Easy Mode</button>
   </div>
   </div>
 
