@@ -119,6 +119,7 @@ function toggleMode() {
 //------------------------FUNCTIONALITY----------------------------//
 
 function restartGame() {
+  disableButtons();
   gamePattern = [];
   playerPattern = [];
   TURN_INDICATOR.innerText = "0";
