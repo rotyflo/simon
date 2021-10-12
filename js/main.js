@@ -25,6 +25,20 @@ let gamePattern = [];
 let playerPattern = [];
 let strictMode = false;
 
+Object.keys(BUTTONS).forEach( (color) => {
+  BUTTONS[color].element.addEventListener("click", () => {
+    activateButton(color);
+  });
+});
+
+document.getElementById("start").addEventListener("click", () => {
+  restartGame();
+});
+
+document.getElementById("mode").addEventListener("click", () => {
+  toggleMode();
+});
+
 function playSound({ array, sampleRate }) {
   // We have to start with creating AudioContext
   const audioContext = new AudioContext({ sampleRate });
