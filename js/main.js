@@ -18,7 +18,7 @@ const BUTTONS = {
     sound: makeSineWave(480)
   }
 }
-const BEEP_INTERVAL = 500;
+const TIME_PER_PANEL = 500;
 const NOTIFICATION_TIME = 1000;
 const TURN_INDICATOR = document.getElementById("turn");
 let gamePattern = [];
@@ -38,7 +38,7 @@ function playSound({ array, sampleRate }) {
   source.connect(audioContext.destination);
   source.buffer = audioBuffer;
   source.start(0);
-  source.stop(0.25);
+  source.stop(TIME_PER_PANEL / 4);
 }
 
 function makeSineWave(hz) {
@@ -104,7 +104,7 @@ function activateButton(color) {
 
       setTimeout(function() {
         indicatePattern();
-      }, BEEP_INTERVAL);
+      }, TIME_PER_PANEL);
     }
   }
 }
@@ -137,7 +137,7 @@ function addRandomColorToPattern() {
 }
 
 function indicatePattern() {
-  let interval = BEEP_INTERVAL;
+  let waitTimeForPattern = TIME_PER_PANEL;
 
   gamePattern.forEach(function (color) {
     let element = BUTTONS[color].element;
@@ -147,15 +147,15 @@ function indicatePattern() {
       playSound(BUTTONS[color].sound);
       setTimeout(function () {
         element.style.background = `var(--${color})`;
-      }, BEEP_INTERVAL);
-    }, interval);
+      }, TIME_PER_PANEL / 2);
+    }, waitTimeForPattern);
 
-    interval += BEEP_INTERVAL;
+    waitTimeForPattern += TIME_PER_PANEL;
   });
 
   setTimeout(function () {
     enableButtons();
-  }, interval);
+  }, waitTimeForPattern);
 }
 
 function disableButtons() {
