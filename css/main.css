@@ -5,6 +5,8 @@
   --blue: #3498DB;
   --green: #1ABC9C;
   --yellow: #F1C40F;
+  --white: #ecf0f1;
+  --panel-size: 100px;
 }
 
 body {
@@ -16,8 +18,8 @@ h1 {
 }
 
 .panel {
-  height: 100px;
-  width: 100px;
+  height: var(--panel-size);
+  width: var(--panel-size);
 }
 
 #red {
@@ -37,5 +39,5 @@ h1 {
 }
 
 #red:active, #blue:active, #yellow:active, #green:active {
-  background-color: white !important;
+  background-color: var(--white) !important;
 }
