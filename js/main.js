@@ -25,7 +25,6 @@ let gamePattern = [];
 let playerPattern = [];
 let strictMode = false;
 
-
 function playSound({ array, sampleRate }) {
   // We have to start with creating AudioContext
   const audioContext = new AudioContext({ sampleRate });
@@ -38,7 +37,7 @@ function playSound({ array, sampleRate }) {
   source.connect(audioContext.destination);
   source.buffer = audioBuffer;
   source.start(0);
-  source.stop(TIME_PER_PANEL / 4);
+  source.stop(TIME_PER_PANEL / 2000);
 }
 
 function makeSineWave(hz) {
