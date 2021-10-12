@@ -18,9 +18,7 @@ const BUTTONS = {
     sound: makeSineWave(480)
   }
 }
-const ON_OPACITY = "1";
-const OFF_OPACITY = "0.6";
-const BEEP_INTERVAL = 1000;
+const BEEP_INTERVAL = 500;
 const NOTIFICATION_TIME = 1000;
 const TURN_INDICATOR = document.getElementById("turn");
 let gamePattern = [];
@@ -39,8 +37,8 @@ function playSound({ array, sampleRate }) {
   const source = audioContext.createBufferSource();
   source.connect(audioContext.destination);
   source.buffer = audioBuffer;
-  source.start();
-  console.log(array);
+  source.start(0);
+  source.stop(0.25);
 }
 
 function makeSineWave(hz) {
