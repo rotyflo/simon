@@ -64,11 +64,11 @@ function activateButton(color) {
   playSound(BUTTONS[color].sound);
   playerPattern.push(color);
 
-  let pp = JSON.stringify(playerPattern);
-  let gp = JSON.stringify(gamePattern);
+  let playerPatternString = JSON.stringify(playerPattern);
+  let gamePatternString = JSON.stringify(gamePattern);
 
   // INCORRECT ANSWER
-  if (pp !== gp.slice(0, pp.length - 1) + "]") {
+  if (playerPatternString !== gamePatternString.slice(0, playerPatternString.length - 1) + "]") {
     disableButtons();
     let turn = TURN_INDICATOR.innerText;
     TURN_INDICATOR.innerText = gamePattern == false ? "Press Start" : "Wrong";
@@ -87,7 +87,7 @@ function activateButton(color) {
   }
 
   // CORRECT ANSWER
-  if (pp == gp) {
+  if (playerPatternString == gamePatternString) {
     disableButtons();
     TURN_INDICATOR.innerText = Number(TURN_INDICATOR.innerText) + 1;
     playerPattern = [];
