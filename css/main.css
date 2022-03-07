@@ -37,6 +37,14 @@ h1 {
   background-color: var(--yellow);
 }
 
+#red, #blue, #yellow, #green {
+  border: 2px solid var(--font-color);
+}
+
 #red:active, #blue:active, #yellow:active, #green:active {
   background-color: var(--background-color) !important;
+}
+
+.btn {
+  border: 2px solid var(--font-color);
 }
