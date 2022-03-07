@@ -156,7 +156,7 @@ function indicatePattern() {
     let element = BUTTONS[color].element;
 
     setTimeout(function () {
-      element.style.background = "white";
+      element.style.background = "var(--background-color)";
       playSound(BUTTONS[color].sound);
       setTimeout(function () {
         element.style.background = `var(--${color})`;

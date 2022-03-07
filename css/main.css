@@ -1,11 +1,10 @@
-@import url("https://rotyflo.github.io/css/terminal.css");
+@import "https://rotyflo.github.io/css/theme.css";
 
 :root {
   --red: #E74C3C;
   --blue: #3498DB;
   --green: #1ABC9C;
   --yellow: #F1C40F;
-  --white: #ecf0f1;
   --panel-size: 100px;
 }
 
@@ -39,5 +38,5 @@ h1 {
 }
 
 #red:active, #blue:active, #yellow:active, #green:active {
-  background-color: var(--white) !important;
+  background-color: var(--background-color) !important;
 }
